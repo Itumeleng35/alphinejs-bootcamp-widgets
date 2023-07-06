@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="./bootcamp-functions/greetFunction.js" defer></script>
+    <script src="./bootcamp-functions/transportFunction.js" defer></script>
+    <script src="./bootcamp-functions/totalPhoneBillFunction.js" defer></script>
+    <script src="./bootcamp-functions/enoughAirtimeFunction.js" defer></script>
+
+<style>
+    .block {
+        border: 2px solid rgb(16, 119, 160);
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+</style>
+
+
+
+    <body>
+    <h1>AlpineJS widgets for Bootcamp functions</h1>
+<section class="blocks">
+    <div class="block">
+    <h2>Greet function</h2>
+
+    <hr>
+
+    <div x-data="{
+            lang:'',
+            username:'',
+            greet:'',
+            message(){
+                this.greet = greetFunc(this.username, this.lang)
+                console.log(this.greet)
+                alert(this.greet)
+            }
+
+        }">
+
+        <span>Enter your name: </span> <span></span>
+
+        <input type="text" id="name" x-model="username">
+
+        <button @click="message()">Greet</button>
+
+
+        <label for="Zulu">Zulu</label>
+        <input type="radio" id="Zulu" x-model="lang" value="Zulu">
+
+        <label for="Latin">Latin</label>
+        <input type="radio" id="Latin" x-model="lang" value="Latin">
+
+</div>
+    </div>
+
+
+<span x-text="greet"></span>
+
+    </div>
+
+
+    </div>
+
+
+    <div class="block" x-data="{
+        rightPrice : '',
+        shiftTime : '',
+        calculate() {
+            this.rightPrice = transportFee(this.shiftTime);
+            console.log(this.shiftTime);
+            alert(this.shiftTime);
+        }
+    }">
+
+    <h2>Transport fee Function</h2>
+    <hr>
+
+    <label for="morning">Morning</label>
+        <input type="radio" id="morning" x-model="shiftTime" value="R20">
+
+        <label for="afternoon">Afternoon</label>
+        <input type="radio" id="afternoon" x-model="shiftTime" value="R10">
+
+        <label for="nightshift">Nightshift</label>
+        <input type="radio" id="night" x-model="shiftTime" value="free">
+
+        <button x-on:click="calculate()">Calculate</button>
+
+    </div>
+</div>
+
+<h2>Total phone bill function</h2>
+
+<hr>
+
+
+<div class="block" x-data="{
+    data: '',
+    callCost: 2.75,
+    smsCost: 0.65,
+    totalCost: 0,
+    calculate() {
+        this.totalCost = totalPhoneBill(this.data);
+        console.log(this.totalCost);
+        alert(this.totalCost);
+    }
+}">
+    <input type="text" id="data" x-model="data">
+    <button x-on:click="calculate()">Total phone bill</button>
+</div>
+
+
+
+<div class="block">
+<h2>Enough airtime function</h2>
+
+<hr>
+
+<div class="block" x-data="{
+    usageString: '',
+    availableAirtime: '',
+    call: 1.88,
+    data: 12,
+    sms: 0.75,
+    calculate() {
+        this.availableAirtime = enoughAirtime(this.usageString, this.call, this.data, this.sms);
+        console.log(this.availableAirtime);
+        alert(this.availableAirtime);
+    }
+}">
+
+
+<label for="usageString">Projected usage</label>
+<input type="text" x-model="usageString">
+
+
+<label for="availableAirtime">Available Airtime</label>
+<input type="text" x-model="availableAirtime" readonly>
+<button x-on:click="calculate()">Airtime usage</button>
+
+</div>
+
+
+</section>
+</head>
+
+
+
+</body>
+
+</html>
